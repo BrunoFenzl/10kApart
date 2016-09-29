@@ -11,6 +11,8 @@ $hip: sqrt( pow($side, 2) + pow($side, 2) );
 $body-color: #4c4f58;
 $default-color: #5DB75D;
 
+$gtac: yellow, green, red, blue;
+
 
 *{
     box-sizing: border-box;
@@ -30,6 +32,22 @@ body{
     background-color: #fbfbfb;
 }
 
+/*
+    Typography
+ */
+
+a{
+    color: $default-color;
+}
+
+p{
+    transition: all 300ms;
+
+    &::before{
+        transition: all 300ms;
+    }
+}
+
 .top{
     position: absolute;
     top: 0;
@@ -40,55 +58,13 @@ body{
 
     background-color: white;
     background-color: rgba(255, 255, 255, .8);
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid #eaeaea;
+
+    display: none;
 }
 
 small{
     font-size: 80%;
-}
-
-input{
-    display: none;
-}
-
-input[type="radio"] + .nav-item{
-    position:relative;
-    z-index: 110;
-    display: inline-block;
-    line-height: 1;
-    font-weight: bold;
-    padding: 25px 15px;
-    border-right: 1px solid #f2f2f2;
-    cursor: pointer;
-    transition: all 250ms;
-
-    .nav-item-description{
-        display: none;
-        margin-left: 10px;
-
-        font-weight: normal;
-        font-style: italic;
-        color:#868686;
-        //transition: all 250ms;
-    }
-
-    &:first-of-type{
-        background-color: $body-color;
-        color: white;
-
-        &:hover{
-            background-color: $default-color;
-        }
-    }
-}
-
-input[type="radio"]:checked + .nav-item{
-    background-color: $default-color;
-    color: white;
-
-    .nav-item-description{
-        color:white;
-    }
 }
 
 h1{
@@ -115,20 +91,90 @@ h1{
     }
 }
 
+.subline{
+    margin-left: 20px;
+    display: inline-block;
+}
+
+h2{
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+
+/*
+    Navigation
+ */
+
+input{
+    display: none;
+}
+
+input[type="radio"] + .nav-item{
+    position:relative;
+    z-index: 110;
+    display: none;
+    line-height: 1;
+    font-weight: bold;
+    padding: 25px 15px;
+    border-right: 1px solid #eaeaea;
+    cursor: pointer;
+    transition: all 250ms;
+    display: none;
+
+    .nav-item-description{
+        margin-left: 10px;
+
+        font-weight: normal;
+        font-style: italic;
+        color:#868686;
+        //transition: all 250ms;
+    }
+
+    &:first-of-type{
+        background-color: $body-color;
+        color: white;
+
+        &:hover{
+            background-color: $default-color;
+        }
+    }
+}
+
+input[type="radio"]:checked + .nav-item{
+    background-color: $default-color;
+    color: white;
+    .nav-item-description{
+        color:white;
+    }
+}
+
+/*
+    Content
+ */
+
 main{
     position: relative;
+    display: block; //IE
     min-height: 100vh;
 }
 
 article{
     position: relative;
-    padding-bottom: 30px;
+    margin-top: 50px;
+    padding-bottom: 60px;
 
 }
-.content>header,
+
+header,
 .content>section{
     padding: 20px;
     width: 100%;
+}
+
+.jump-right,
+.jump-left{
+    display: none;
 }
 
 footer{
@@ -146,6 +192,7 @@ footer{
  *  HERE STARTS THE MAGIC!
  */
 
+// Crops the .c below to the screen size
 .scene{
     position: absolute;
     top:0;
@@ -157,12 +204,13 @@ footer{
 }
 
 //container
+//sets the initail rotations of the whole composition
 .c{
     position: absolute;
     width: 0;
     height: 0;
-    top: 30%;
-    left: 60%;
+    top: 20%;
+    left: 70%;
     transform: rotateZ(-25deg) rotateX(-15deg) rotateY(-15deg) translate3d(-50%, -50%, 600px) ;
 
     perspective: 800px;
@@ -170,84 +218,14 @@ footer{
     transform-style: preserve-3d;
 }
 
-// group wrapper
+// group wrapper.
+// the one rotating
 .w{
-    width: 0;//$side * 4 * 1px;
-    height: 0;//$side * 4 * 1px;
-
-    //transform: translate(-50%, -50%) rotate3d(1, 0, -1, 60deg);
-    //border: 1px solid gray;
+    width: 0;
+    height: 0;
     transform-style: preserve-3d;
     transform-origin: 50% 50%;
     animation: rotateGroups 60s infinite linear;
-}
-
-//s means static
-//used for content
-p.s{
-    transform: translate3d(0, 0, 0)!important;
-}
-
-// .distance{
-//     position: absolute;
-//     top: 50%;
-//     left: 0;
-//     width: 50%;
-//     height: 40%;
-
-//     transform: translateY(-50%);
-
-//     background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 37%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 67%, rgba(255,255,255,0) 100%);
-//     background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 37%,rgba(255,255,255,1) 50%,rgba(255,255,255,1) 67%,rgba(255,255,255,0) 100%);
-//     background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 37%,rgba(255,255,255,1) 50%,rgba(255,255,255,1) 67%,rgba(255,255,255,0) 100%);
-//     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=0 );
-// }
-
-.g p{
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate3d(0, 0, 0);
-
-    display: block;
-    margin: 0;
-    padding: 0;
-
-    width: $side * 1vw;
-    height: $side * 1vw;
-
-    /* arctan(50 / 50) = 44.99999997734deg 
-    * ??? need to skew by 90deg - 34.01935deg = 55.98065deg ???
-    */
-    
-    transform: skewX(-44.99999997734deg);
-    transform-origin: 100% 0;
-    overflow: hidden;
-    transition: all 2000ms; 
-
-    &::before{
-        content: "";
-        position: absolute; 
-        top: 0;
-        left: 0;
-        display: block;
-        width: $side * 1vw;
-        height: $side * 1vw;
-
-        transform: skewX(44.99999997734deg);
-        transform-origin: inherit;
-
-        background: #d6d6d6;
-        background: rgba(227,227,227,1);
-        background: -moz-linear-gradient(top, rgba(227,227,227,1) 0%, rgba(214,214,214,1) 100%);
-        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(227,227,227,1)), color-stop(100%, rgba(214,214,214,1)));
-        background: -webkit-linear-gradient(top, rgba(227,227,227,1) 0%, rgba(214,214,214,1) 100%);
-        background: -o-linear-gradient(top, rgba(227,227,227,1) 0%, rgba(214,214,214,1) 100%);
-        background: -ms-linear-gradient(top, rgba(227,227,227,1) 0%, rgba(214,214,214,1) 100%);
-        background: linear-gradient(to bottom, rgba(227,227,227,1) 0%, rgba(214,214,214,1) 100%);
-        cursor: pointer;
-        transition: all 300ms;
-    }
 }
 
 //DNA
@@ -256,7 +234,8 @@ p.s{
     transform-origin: 50% 50%;
     transition: all 1000ms ease-in-out;
     
-    //scattered positions
+    //scattered positions to save on size
+    //we create eight containers holding each 32 triangles
     @for $k from 1 through 8{
         $randomRotation: random(360);
         $flip: 0deg;
@@ -265,11 +244,63 @@ p.s{
             $flip: 180deg;
         }
         
+        //So the traingles look placed randomly
+        //we rotate and flip each one of these containers 
         &:nth-child(#{$k}){
             transform: rotateX($flip) rotateY(#{$randomRotation}deg);
         }
     }
+    
+    // Triangle
+    p{
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate3d(0, 0, 0);
 
+        display: block;
+        margin: 0;
+        padding: 0;
+
+        width: $side * 1vw;
+        height: $side * 1vw;
+
+        /* arctan(50 / 50) = 44.99999997734deg 
+        * ??? need to skew by 90deg - 34.01935deg = 55.98065deg ???
+        */
+        
+        transform: skewX(-44.99999997734deg);
+        transform-origin: 100% 0;
+        overflow: hidden;
+        transition: all 2000ms; 
+
+        &::before{
+            content: "";
+            position: absolute; 
+            top: 0;
+            left: 0;
+            display: block;
+            width: $side * 1vw;
+            height: $side * 1vw;
+
+            transform: skewX(44.99999997734deg);
+            transform-origin: inherit;
+
+            background: #e3e3e3;
+            background: -moz-linear-gradient(top, rgba(227,227,227,1) 0%, rgba(214,214,214,1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(227,227,227,1)), color-stop(100%, rgba(214,214,214,1)));
+            background: -webkit-linear-gradient(top, rgba(227,227,227,1) 0%, rgba(214,214,214,1) 100%);
+            background: -o-linear-gradient(top, rgba(227,227,227,1) 0%, rgba(214,214,214,1) 100%);
+            background: -ms-linear-gradient(top, rgba(227,227,227,1) 0%, rgba(214,214,214,1) 100%);
+            background: linear-gradient(to bottom, rgba(227,227,227,1) 0%, rgba(214,214,214,1) 100%);
+            
+            cursor: pointer;
+            transition: all 300ms;
+        }
+    }
+    
+
+    //each one of the 32 triangles have a certain random position
     $p: 0;
 
     $rangeMax: $radius + $radius * .2;
@@ -295,11 +326,9 @@ p.s{
     }
 }
 
-
-
 //shift first half to the top
 input[type="radio"]:nth-of-type(2):checked ~ .scene .g:nth-child(1){
-    transform: translateY( -#{$hip * 8  * 1vw} ) rotateY(0deg);
+    transform: translateY( -#{$hip * 8 * 1vw} ) rotateY(0deg);
 }
 
 input[type="radio"]:nth-of-type(2):checked ~ .scene .g:nth-child(3){
@@ -339,39 +368,109 @@ input[type="radio"]:nth-of-type(4):checked ~ .scene .g:nth-child(1),
 input[type="radio"]:nth-of-type(4):checked ~ .scene .g:nth-child(3),
 input[type="radio"]:nth-of-type(4):checked ~ .scene .g:nth-child(5){
 
-    p::before{
-        background: rgb(255,125,50);
-        background: -moz-linear-gradient(left,  rgb(255,125,50) 0%, rgb(237,86,0) 100%);
-        background: -webkit-linear-gradient(left,  rgb(255,125,50) 0%,rgb(237,86,0) 100%);
-        background: linear-gradient(to right,  rgb(255,125,50) 0%,rgb(237,86,0) 100%);
-        transition: all 300ms;
-    }
+    // @for $j from 0 through ($steps/4) - 1{
+    //     $j: $j * 4; //increment in 4 steps
 
-    $translateY: $hip * 1vw;
-    @for $j from 0 through ($steps/4) - 1{
-        $j: $j * 4; //increment in 4 steps
-
-        $rotateZ: 45deg;
-        $translateX: $hip/2 * 1vw;
-        $translateY: $translateY + $hip;
+    //     $rotateZ: 45deg;
+    //     $translateX: $hip/2 * 1vw;
+    //     $translateY: $translateY + $hip;
         
-        p:nth-child(#{$j+1}){
-            transform: translate3d(-$translateX, $translateY, 0) rotateZ(45deg);
+    //     p:nth-child(#{$j+1}){
+
+    //         transform: translate3d(-$translateX, $translateY, 0) rotateZ(45deg);
+    //     }
+
+    //     p:nth-child(#{$j+2}){
+    //         transform: translate3d($translateX, $translateY, 0) rotateZ(-135deg);
+    //     }
+
+    //     p:nth-child(#{$j+3}){
+    //         transform: translate3d(-$translateX*2, $translateY + $hip/2, 0) rotateZ(45deg) scaleX(-1) scaleY(-1);
+    //     }
+
+    //     p:nth-child(#{$j+4}){
+    //         transform: translate3d($translateX*2, $translateY + $hip/2, 0) rotateZ(-135deg) scaleX(-1) scaleY(-1);
+    //     }
+
+    // }
+    
+    $stpd: 360 / 32;
+    $stp: $stpd * pi() / 180;
+
+    $r: $hip*2 * 1vw;
+    $translateY: 0;
+
+    $incrementY: $hip/2;
+    $rotateZ: 3deg;//45deg;
+
+    @for $l from 1 through $steps/2 + 1{
+        
+        
+        
+
+        $x: sin( $stp * $l ) * $r;
+        $z: cos( $stp * $l ) * $r;
+
+        // @if $l % 2 == 0 {
+        //     $rotateZ: 5deg;
+        // }
+        // @else {
+        //     $rotateZ: 185deg;
+        // }
+        
+        p:nth-child(#{$l}){
+
+            transform: none;
+
+            $angleY: ( $l * $stpd ) * 1deg;
+            
+            transform: translate3d($x, $translateY * 1vw, $z) rotateY( $angleY ) rotateZ( $rotateZ ) ;
+            
+            $color: nth( $gtac, floor( random(4) ) );
+            
+            &::before{
+                background: $color;
+            }
+        }
+        
+        $translateY: $translateY + $incrementY;
+    }   
+    
+    $translateY: 0;
+    @for $k from $steps/2 + 1 through $steps{
+        
+        $rotateZ: 0deg;//45deg;
+        
+        
+
+        $x: sin( $stp * $k ) * $r;
+        $z: cos( $stp * $k ) * $r;
+
+        // @if $k % 2 == 0 {
+        //     $rotateZ: 5deg;
+        // }
+        // @else {
+        //     $rotateZ: 185deg;
+        // }
+        
+        p:nth-child(#{$k}){
+
+            transform: none;
+
+            $angleY: ( $k * $stpd ) * 1deg;
+            
+            transform: translate3d($x, $translateY * 1vw, $z) rotateY( $angleY ) rotateZ( $rotateZ ) ;
+
+            $color: nth( $gtac, floor( random(4) ) );
+            
+            &::before{
+                background: $color;
+            }
         }
 
-        p:nth-child(#{$j+2}){
-            transform: translate3d($translateX, $translateY, 0) rotateZ(-135deg);
-        }
+        $translateY: $translateY + $incrementY;
 
-        p:nth-child(#{$j+3}){
-            transform: translate3d(-$translateX*2, $translateY + $hip/2, 0) rotateZ(45deg) scaleX(-1) scaleY(-1);
-        }
-
-        p:nth-child(#{$j+4}){
-            transform: translate3d($translateX*2, $translateY + $hip/2, 0) rotateZ(-135deg) scaleX(-1) scaleY(-1);
-        }
-
-    }
+    }   
 
 }
 
@@ -384,6 +483,9 @@ input[type="radio"]:nth-of-type(4):checked ~ .scene .g:nth-child(5){
 
 
 @media (min-width: 992px){
+    .top{
+        display: block;
+    }
     article{
         margin-top: 50px;
         margin-left: 50px;
@@ -445,6 +547,7 @@ input[type="radio"]:nth-of-type(4):checked ~ .scene .g:nth-child(5){
     }
 
     input[type="radio"] + .nav-item{
+        display: inline-block;
         .nav-item-description{
             display: inline-block;
         }

@@ -1,15 +1,15 @@
 {
-  "name": "callisto4",
+  "name": "a-crispr-apart",
   "version": "1.0.0",
-  "author": "frontend-studios",
-  "homepage": "http://www.frontend-studios.de",
+  "author": "Bruno Fenzl",
+  "homepage": "http://brunofenzl.com",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/frontend-studios/"
+    "url": "https://github.com/BrunoFenzl/"
   },
   "bugs": {
-    "url": "https://github.com/frontend-studios/"
+    "url": "https://github.com/BrunoFenzl/"
   },
   "licenses": [
     {
@@ -34,10 +34,9 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
-    "sassdoc": "^2.1.20"
+    "sassdoc": "^2.1.20",
+    "gulp-uglifycss": "^1.0.6"
   },
   "dependencies": {
-    "gulp-uglifycss": "^1.0.6",
-    "sass-math": "git+https://git@github.com/BrunoFenzl/Sass-Math.git"
   }
 }
