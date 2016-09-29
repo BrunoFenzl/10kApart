@@ -1,0 +1,43 @@
+{
+  "name": "callisto4",
+  "version": "1.0.0",
+  "author": "frontend-studios",
+  "homepage": "http://www.frontend-studios.de",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frontend-studios/"
+  },
+  "bugs": {
+    "url": "https://github.com/frontend-studios/"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "scripts": {
+    "build": "bower install && gulp",
+    "jshint": "gulp jshint"
+  },
+  "engines": {
+    "node": ">= 0.12.0",
+    "npm": ">=2.1.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-compass": "^2.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "sassdoc": "^2.1.20"
+  },
+  "dependencies": {
+    "gulp-uglifycss": "^1.0.6",
+    "sass-math": "git+https://git@github.com/BrunoFenzl/Sass-Math.git"
+  }
+}
