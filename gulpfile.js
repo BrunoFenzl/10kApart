@@ -10,15 +10,6 @@ var compass       = require('gulp-compass');
 var path          = require('path');
 var uglifycss     = require('gulp-uglifycss');
 
-//js related 
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-
-
-var scripts = [
-    
-];
-
 var input   = 'assets/styles/main.scss';
 var output  = 'dist/styles';
 
@@ -38,7 +29,6 @@ var sassdocOptions = {
 gulp.task('_sass', function () {
   return gulp
     .src(input)
-    //.pipe(sourcemaps.init())
     .pipe(compass({
       css: 'tmp',
       sass: 'assets/styles',
