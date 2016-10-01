@@ -1,10 +1,8 @@
 var gulp          = require('gulp');
 
 // css related
-//var sass          = require('gulp-sass');
 var sourcemaps    = require('gulp-sourcemaps');
 var autoprefixer  = require('gulp-autoprefixer');
-var sassdoc       = require('sassdoc');
 var minifyCSS     = require('gulp-minify-css');
 var compass       = require('gulp-compass');
 var path          = require('path');
@@ -20,10 +18,6 @@ var sassOptions = {
 
 var autoprefixerOptions = {
   browsers: [ 'last 2 versions' ]
-};
-
-var sassdocOptions = {
-  dest: './docs/sassdoc'
 };
 
 gulp.task('_sass', function () {
@@ -47,13 +41,9 @@ gulp.task('_prefixer', ['_sass'], function(){
     .pipe(gulp.dest(output))
 });
 
-gulp.task( 'build:styles', ['_prefixer'] );
-
-
 gulp.task('watch', function() {
   return gulp
     .watch(input, ['_prefixer'])
 });
 
-
-gulp.task('default', ['sass', 'scripts']);
+gulp.task('default', ['_prefixer']);
